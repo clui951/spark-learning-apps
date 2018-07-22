@@ -12,9 +12,15 @@ object SampleJob {
 
     val sc = new SparkContext(conf)
 
+    val personsRDD = sc.makeRDD(List(
+        Person("Mike",28),
+        Person("Adam", 31),
+        Person("John", 30))
+    )
+
     val personsCalculations = new CalculateOnPersons(sc)
 
-    val count = personsCalculations.personsCount()
+    val count = personsCalculations.personsCount(personsRDD)
     println(count)
 
     sc.stop()
