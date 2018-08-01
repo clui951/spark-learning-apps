@@ -1,0 +1,5 @@
+package SparkInvertedIndex
+
+class Driver {
+
+}
