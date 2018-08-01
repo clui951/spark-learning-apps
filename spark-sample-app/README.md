@@ -1,3 +1,8 @@
+<h1> Spark Sample Application</h1>
+<h3> A bare bones project structure</h3>    
+
+<br/>
+
 http://fizzylogic.nl/2015/11/10/spark-101-writing-your-first-spark-app/  
 http://fizzylogic.nl/2015/11/12/spark-101-integration-with-data-sources/  
 https://medium.com/luckspark/installing-spark-2-3-0-on-macos-high-sierra-276a127b8b85  
