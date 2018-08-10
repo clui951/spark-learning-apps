@@ -20,13 +20,14 @@ object Driver {
         text.replaceAll("[^\\w\\s]|('s|ly|ed|ing|ness) ", " ")
           .split("""\W+""")
           .filter(!stopwordsBroadcast.value.contains(_))
-          .map(word => (word, path))
+          .zipWithIndex
+          .map{case (word, index) => (word, index, path)}
     }.map{
-      // (w,p) to ((w,p),1); trim path to only file name
-      case (w, p) => ((w, p.split("/").last), 1)
+      // (w, i, p) to ((w,p),[i]); trim path to only file name
+      case (w, i, p) => ((w, p.split("/").last), List(i))
     }.reduceByKey{
       // add (w,p) counts together
-      case (c1, c2) => c1 + c2
+      case (c1, c2) => c1 ++ c2
     }.map{
       // change tuple format
       case ((w, p), c) => (w, (p, c))
@@ -44,7 +45,7 @@ object Driver {
         (w, seqString)
     }
 
-    res.take(15).foreach(println(_))
+    res.take(1).foreach(println(_))
 
     println("DONE!")
   }
